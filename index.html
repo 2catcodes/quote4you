@@ -1,43 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Quote4You – Extreme Quote Bot</title>
+  <title>Quote4You Chatbot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>🔥 Get Your Epic Website Quote 🔥</h1>
-    <form id="quoteForm">
-      <label>Number of Pages:
-        <input type="number" id="pages" min="1" value="5" required />
-      </label>
-      <label>Need Booking/Scheduling?
-        <select id="booking">
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
-        </select>
-      </label>
-      <label>Will You Provide All Content?
-        <select id="content">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      </label>
-      <label>Desired Launch Date:
-        <input type="date" id="launchDate" required />
-      </label>
-      <label>Ongoing Maintenance Needed?
-        <select id="maintenance">
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
-        </select>
-      </label>
-      <button type="submit">⚡ GET QUOTE ⚡</button>
-    </form>
-    <div id="quoteResult" class="hidden"></div>
+  <div class="chat-container">
+    <div id="chatWindow" class="chat-window"></div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Type your response..." autocomplete="off" />
+      <button id="sendBtn">Send</button>
+    </div>
   </div>
   <canvas id="confetti"></canvas>
   <script src="script.js"></script>

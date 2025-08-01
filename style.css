@@ -1,67 +1,84 @@
-
+/* Futuristic Chatbot Styles */
 body {
   margin: 0;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  background: linear-gradient(to right, #ff6a00, #ee0979);
-  color: white;
+  padding: 0;
+  height: 100vh;
+  background: #0d0f14;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  overflow-x: hidden;
 }
-.container {
-  background: rgba(0, 0, 0, 0.75);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 20px #ff6a00;
+.chat-container {
+  width: 90%;
   max-width: 500px;
-  width: 100%;
+  height: 85vh;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.2), 0 0 20px rgba(255,0,255,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
-h1 {
-  text-align: center;
-  font-size: 2rem;
-  animation: pulse 1.5s infinite;
+.chat-window {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
-label {
-  display: block;
-  margin-top: 1rem;
+.message {
+  max-width: 80%;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: messageIn 0.3s forwards;
 }
-input, select, button {
-  width: 100%;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
+.message.bot {
+  background: rgba(0, 255, 255, 0.2);
+  color: #00ffea;
+  align-self: flex-start;
+  border-top-left-radius: 0;
+}
+.message.user {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  align-self: flex-end;
+  border-top-right-radius: 0;
+}
+.input-area {
+  display: flex;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+#userInput {
+  flex: 1;
+  padding: 15px;
   border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
 }
-button {
-  background: #00ffcc;
-  color: black;
+#userInput::placeholder {
+  color: #aaa;
+}
+#sendBtn {
+  padding: 0 20px;
+  background: #00ffea;
+  border: none;
+  color: #0d0f14;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: background 0.3s;
 }
-button:hover {
-  transform: scale(1.05);
+#sendBtn:hover {
+  background: #00d4ba;
 }
-#quoteResult {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #ffffff33;
-  border-radius: 10px;
-  font-size: 1.2rem;
-  animation: fadeIn 1s ease;
-}
-.hidden {
-  display: none;
-}
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes messageIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
