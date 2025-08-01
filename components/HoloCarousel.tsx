@@ -1,5 +1,7 @@
+// components/HoloCarousel.tsx
+
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 
 interface Props {
   onQuote: () => void;
@@ -33,10 +35,15 @@ export default function HoloCarousel({ onQuote }: Props) {
         </motion.div>
       </div>
       <div className="mt-6 flex space-x-4">
-        <button onClick={next} className="px-4 py-2 bg-cyan-600 rounded-lg">Next</button>
+        <button onClick={next} className="px-4 py-2 bg-cyan-600 rounded-lg">
+          Next
+        </button>
         {step === steps.length - 1 && (
-          <button onClick={quote} className="px-4 py-2 bg-green-500 rounded-lg">Get Quote</button>
+          <button onClick={quote} className="px-4 py-2 bg-green-500 rounded-lg">
+            Get Quote
+          </button>
         )}
       </div>
     </div>
+  );
 }
