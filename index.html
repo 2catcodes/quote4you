@@ -2,26 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quote Bot</title>
+  <title>Quote4You – Instant Website Quote</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
     }
-    iframe {
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
       width: 100%;
-      height: 100%;
-      border: none;
+      padding: 6px;
+      margin-top: 4px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      font-weight: bold;
+    }
+    #quote {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: green;
     }
   </style>
 </head>
 <body>
-  <iframe
-    src="https://landbot.site/YOUR_BOT_ID"
-    title="Quote Bot"
-    allow="camera; microphone; autoplay; encrypted-media;"
-  ></iframe>
+
+  <h1>Get a Quote for Your Website</h1>
+
+  <label>How many total pages?
+    <input type="number" id="pages" min="1" value="5" />
+  </label>
+
+  <label>Do you need booking/scheduling?
+    <select id="booking">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+  </label>
+
+  <label>Will you provide all content (text/images)?
+    <select id="content">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </label>
+
+  <label>When do you want to launch?
+    <input type="date" id="launchDate" />
+  </label>
+
+  <label>Do you want ongoing maintenance?
+    <select id="maintenance">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+  </label>
+
+  <button onclick="generateQuote()">Get My Quote</button>
+
+  <div id="quote"></div>
+
+  <script>
+    function generateQuote() {
+      const pages = parseInt(document.getElementById("pages").value);
+      const booking = document.getElementById("booking").value === "yes";
+      const contentProvided = document.getElementById("content").value === "yes";
+      const launchDate = new Date(document.getElementById("launchDate").value);
+      const maintenance = document.getElementById("maintenance").value === "yes";
+
+      let total = 0;
+
+      // Base price
+      if (pages === 1) {
+        total = 200;
+      } else if (pages === 5) {
+        total = 500;
+      } else if (pages > 5) {
+        total = 500 + (pages - 5) * 75;
+      }
+
+      // Booking fee
+      if (booking) total += 100;
+
+      // Content discount
+      if (contentProvided) total -= 75;
+
+      // Rush fee
+      const today = new Date();
+      const diffDays = Math.ceil((launchDate - today) / (1000 * 60 * 60 * 24));
+      if (!isNaN(diffDays) && diffDays < 14) {
+        total += 100;
+      }
+
+      // Maintenance upsell
+      const upsell = maintenance ? "Includes optional maintenance (billed separately)." : "";
+
+      // Output
+      const output = `
+        Based on your inputs, your estimated quote is <strong>$${total}</strong>.<br/>
+        ${booking ? "Includes booking functionality. " : ""}
+        ${!contentProvided ? "We will handle content creation. " : "Content will be provided by you. "}
+        ${diffDays < 14 ? "<strong>Rush fee applied.</strong> " : ""}
+        ${upsell}
+      `;
+      document.getElementById("quote").innerHTML = output;
+    }
+  </script>
+
 </body>
 </html>
