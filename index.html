@@ -2,19 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quote4You Chatbot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="chat-container">
-    <div id="chatWindow" class="chat-window"></div>
-    <div class="input-area">
-      <input type="text" id="userInput" placeholder="Type your response..." autocomplete="off" />
-      <button id="sendBtn">Send</button>
-    </div>
-  </div>
-  <canvas id="confetti"></canvas>
-  <script src="script.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
